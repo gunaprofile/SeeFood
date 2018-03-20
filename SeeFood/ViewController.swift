@@ -52,7 +52,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             guard let results = request.results as? [VNClassificationObservation] else {
                 fatalError("Model failed to process image")
             }
-            print(results)
+            if let firstResult = results.first {
+                
+                if firstResult.identifier.contains("hotdog"){
+                    self.navigationItem.title = "Hot dog !"
+                }else {
+                    self.navigationItem.title = "Not Hot dog !"
+                }
+        
+            }
         }
         let imageHandler = VNImageRequestHandler(ciImage : image)
         do{
